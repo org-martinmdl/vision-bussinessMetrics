@@ -61,6 +61,18 @@ export function useStoreState() {
     setMetrics(prev => prev.filter(m => m.id !== id));
   }, []);
 
+  const reorderMetrics = useCallback((fromId: string, toId: string) => {
+    setMetrics(prev => {
+      const from = prev.findIndex(m => m.id === fromId);
+      const to = prev.findIndex(m => m.id === toId);
+      if (from === -1 || to === -1 || from === to) return prev;
+      const next = [...prev];
+      const [moved] = next.splice(from, 1);
+      next.splice(to, 0, moved);
+      return next;
+    });
+  }, []);
+
   const duplicateMetric = useCallback((id: string) => {
     setMetrics(prev => {
       const metric = prev.find(m => m.id === id);
@@ -92,5 +104,6 @@ export function useStoreState() {
     addMetric,
     removeMetric,
     duplicateMetric,
+    reorderMetrics,
   };
 }

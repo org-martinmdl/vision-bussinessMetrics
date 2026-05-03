@@ -39,6 +39,7 @@ export default function Index() {
             onRemoveMetric={state.removeMetric}
             onDuplicateMetric={state.duplicateMetric}
             onAddMetric={state.addMetric}
+            onReorderMetrics={state.reorderMetrics}
           />
         ) : (
           <PredictionsView />
