@@ -104,5 +104,6 @@ export function useStoreState() {
     addMetric,
     removeMetric,
     duplicateMetric,
+    reorderMetrics,
   };
 }
